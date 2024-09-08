@@ -1,0 +1,1 @@
+import * as abc from "./courseSchedule.ts"
