@@ -58,7 +58,7 @@ function maxProfit(prices: number[]): number {
             index++
          }
       }
-      if (prevBuy != null) {
+      else {
          while (index < prices.length - 1) {
             if (prices[index] > prices[index + 1]  ) {
                result += prices[index] - prevBuy;
