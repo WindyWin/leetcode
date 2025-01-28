@@ -73,30 +73,30 @@ function uniquePathsWithObstaclesO(obstacleGrid:number[][]):number {
 
 // 0ms solution :)) ?
 function uniquePathsWithObstacles(obstacleGrid: number[][]): number {
-   const m: number = obstacleGrid.length, n: number = obstacleGrid[0].length;
-   let i: number = 0;
-   let aboveRow: number[] = Array(n).fill(1);
+   const height: number = obstacleGrid.length, width: number = obstacleGrid[0].length;
+   let y: number = 0;
+   let aboveRow: number[] = Array(width).fill(1);
 
    if (obstacleGrid[0][0] === 1) return 0;
 
-   for(let j = 1; j < n; j++) {
-       if (obstacleGrid[i][j] === 1) aboveRow[j] = 0;
-       else aboveRow[j] = aboveRow[j-1]; 
+   for(let x = 1; x < width; x++) {
+       if (obstacleGrid[y][x] === 1) aboveRow[x] = 0;
+       else aboveRow[x] = aboveRow[x-1]; 
    }
-   i++;
+   y++;
 
-   while (i < m) {
-       let currRow: number[] = Array(n).fill(0);
-       if (obstacleGrid[i][0] !== 1 && aboveRow[0] !== 0) currRow[0] = 1;
-       for(let j = 1; j < n; j++) {
-           if (obstacleGrid[i][j] === 1) currRow[j] = 0;
-           else currRow[j] = currRow[j-1] + aboveRow[j];
+   while (y < height) {
+       let currRow: number[] = Array(width).fill(0);
+       if (obstacleGrid[y][0] !== 1 && aboveRow[0] !== 0) currRow[0] = 1;
+       for(let x = 1; x < width; x++) {
+           if (obstacleGrid[y][x] === 1) currRow[x] = 0;
+           else currRow[x] = currRow[x-1] + aboveRow[x];
        }
        aboveRow = currRow;
-       i++;
+       y++;
    }
 
-   return aboveRow[n-1];
+   return aboveRow[width-1];
 };
 
 export { uniquePathsWithObstacles }
